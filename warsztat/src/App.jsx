@@ -22,7 +22,7 @@ function App() {
           <Route path="/wypozyczalnia" element={<PrivateRoute><Wypozyczalnia /></PrivateRoute>} />
           <Route path="/*" element={<ErrorPage />} />
           <Route path="/LoginPage" element={<LoginPage/>} />
-          <Route path="/Register" element= {<RegisterForm/>} />
+          <Route path="/Register" element={<PrivateRoute><Home /></PrivateRoute>} />
         </Routes>
         </AuthProvider>
       </div>
