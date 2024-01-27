@@ -4,11 +4,11 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const logIn = async (username, password) => {
         try {
-            const response = await axios.post('/api/login', { username, password });
+            const response = await axios.get('http://localhost:8080/loginClient', { username, password });
             localStorage.setItem('token', response.data.token);
             setIsLoggedIn(true);
         } catch (error) {

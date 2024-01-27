@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import Nav from "./nav.jsx"
+import axios from 'axios';
+
 const RegisterForm = () => {
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
+        name : "",
+        surname : "test",
+        email : "",
+        phoneNumber : "123456789",
+        dateOfBirth : '2007-12-03',
+        address : "Nowa 32",
   });
+
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     setForm({
@@ -16,27 +23,29 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  
+    axios.post('http://localhost:8080/addClient', form, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => {
+      console.log('Success:', response.data);
+      setStatus('Registration successful');
 
-  fetch('http://localhost:8080/addClient', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(form),
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      setStatus('Registration failed');
+
+    });
   };
 
 
   return (
     <>
     <Nav />
+    <p>{status}</p>
     <div className=' mt-10 bg-slate-100 w-1/3 p-8 rounded-xl m-auto'>
      <form className='flex justify-center flex-col' onSubmit={handleSubmit}>
       <label className='m-auto font-extrabold mb-4 text-2xl'>Wprowadź dane aby się zarejestrować</label>
@@ -79,6 +88,7 @@ const RegisterForm = () => {
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500'
       /> 
       <button className='mt-4 px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow' type="submit">Register</button>
+      <p className='text-xl mt-2'>{status}</p>
         </form>
     </div>
     </>

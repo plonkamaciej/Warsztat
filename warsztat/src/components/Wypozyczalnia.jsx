@@ -4,12 +4,12 @@ import Nav from './nav.jsx'
 function Wypozyczalnia() {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:8080/CarForRent')
-      .then(response => response.json())
-      .then(data => setItems(data))
-      .catch(error => console.error('Error:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:8080/CarForRent')
+  //     .then(response => response.json())
+  //     .then(data => setItems(data))
+  //     .catch(error => console.error('Error:', error));
+  // }, []);
 
   return (
     <div>
