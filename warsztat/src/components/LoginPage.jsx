@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import Nav from './nav.jsx';
 import { AuthContext } from './AuthProvider.jsx';
 
@@ -10,17 +9,9 @@ const LoginPage = () => {
     password: '',
   });
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    
     try  {
       logIn(form.email, form.password);
     }
@@ -29,7 +20,7 @@ const LoginPage = () => {
     };
   };
 
-  
+
   return (
     <>
       <Nav />
