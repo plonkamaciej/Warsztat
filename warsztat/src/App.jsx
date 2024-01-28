@@ -13,7 +13,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 function App() {
   
   return (
-      <div className='bg-opacity-15 h-screen bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-500 via-sky-700 to-purple-900'>
+      <div className='bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-500 via-sky-700 to-purple-900 scroll-smooth h-full'>
          <AuthProvider>
          <Routes>
           <Route path="/" element={<Home />} />
