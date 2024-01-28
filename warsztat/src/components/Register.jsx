@@ -23,21 +23,22 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    axios.post('http://localhost:8080/addClient', form, {
+
+    axios.post('http://localhost:8080/registerClient/save', form, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
     .then(response => {
-      console.log('Success:', response.data);
-      setStatus('Registration successful');
-
+      if (response.data === 'redirect:/registerClient?success') {
+        setStatus('Registration successful');
+      } else {
+        setStatus('Registration failed');
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
       setStatus('Registration failed');
-
     });
   };
 
@@ -45,7 +46,6 @@ const RegisterForm = () => {
   return (
     <>
     <Nav />
-    <p>{status}</p>
     <div className=' mt-10 bg-slate-100 w-1/3 p-8 rounded-xl m-auto'>
      <form className='flex justify-center flex-col' onSubmit={handleSubmit}>
       <label className='m-auto font-extrabold mb-4 text-2xl'>Wprowadź dane aby się zarejestrować</label>

@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const logIn = async (username, password) => {
         try {
-            const response = await axios.get('http://localhost:8080/loginClient', { username, password });
+            const response = await axios.post('http://localhost:8080/loginClient', { username, password });
             localStorage.setItem('token', response.data.token);
             setIsLoggedIn(true);
         } catch (error) {
