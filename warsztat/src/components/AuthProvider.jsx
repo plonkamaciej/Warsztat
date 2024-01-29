@@ -19,12 +19,12 @@ export const AuthProvider = ({ children }) => {
                 setErrorMessage('');
                 navigate('/')
             } else {
-                setErrorMessage('Bad login');
+                setErrorMessage('Złe dane logowania');
                 console.error("Error during login: unexpected response", response.data);
             }
         } catch (error) {
             console.error("Error during login", error);
-            setErrorMessage('Bad login');
+            setErrorMessage('Złe dane logowania');
         }
     };
 
