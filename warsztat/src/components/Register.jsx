@@ -33,7 +33,7 @@ const RegisterForm = () => {
       if (response.data === 'redirect:/registerClient?success') {
         setStatus('Registration successful');
       } else {
-        setStatus('Registration failed');
+        setStatus('Registration failed')
       }
     })
     .catch((error) => {
