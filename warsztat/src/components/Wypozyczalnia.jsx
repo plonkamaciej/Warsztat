@@ -2,27 +2,26 @@ import React, { useState, useEffect, useContext } from 'react';
 import Nav from './nav.jsx'
 import { AuthContext } from './AuthProvider.jsx';
 import Content from './content.jsx';
+import axios from 'axios';
 
 function Wypozyczalnia() {
   const [items, setItems] = useState([]);
   const { isLoggedIn } = useContext(AuthContext);
-  // useEffect(() => {
-  //   fetch('http://localhost:8080/CarForRent')
-  //     .then(response => response.json())
-  //     .then(data => setItems(data))
-  //     .catch(error => console.error('Error:', error));
-  // }, []);
+  
+
+useEffect(() => {
+  axios.get('http://localhost:8080/carForRents')
+        .then(response => setItems(response.data))
+        .catch(error => console.error('Error:', error));
+}, []);
 
   return (
     <div>
       <Nav />
       
       {isLoggedIn ? (
-        // <ul>
-        //   {items.map(item => (
-        //     <li key={item.id}>{item.name}</li>
-        //   ))}
-        // </ul>
+        
+        
         <Content title="WYPOŻYCZALNIA SAMOCHODÓW">
         <p className="mb-6">Zapraszamy do naszej wypożyczalni samochodów, gdzie znajdziesz szeroki wybór pojazdów, od ekonomicznych modeli miejskich po luksusowe SUV-y. Oferujemy elastyczne warunki wynajmu, konkurencyjne ceny i profesjonalną obsługę, abyś mógł cieszyć się swobodą podróżowania.</p>
 
@@ -49,7 +48,19 @@ function Wypozyczalnia() {
             </ul>
           </div>
         </div>
-    
+        <h3 className="text-lg font-semibold mb-2">Nasze samochody:</h3>
+        <div>
+                    {Array.isArray(items) && items.map((item, index) => (
+                        <div key={index} className=' flex gap-5'>
+                            <p>{item.mark}</p>
+                            <p>{item.model}</p>
+                            <p>{item.color}</p>
+                            <p>ROCZNIK: {item.dateOfProduction}</p>
+                            
+                        </div>
+                    ))}
+                </div>
+
         <p className="mt-8">Nie czekaj dłużej! Skontaktuj się z nami i zarezerwuj swój samochód już dziś, aby rozpocząć niezapomnianą podróż!</p>
         </ Content>
 

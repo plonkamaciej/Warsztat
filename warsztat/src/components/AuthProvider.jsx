@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate(); 
 
@@ -18,7 +19,12 @@ export const AuthProvider = ({ children }) => {
                 setIsLoggedIn(true);
                 setErrorMessage('');
                 navigate('/')
-            } else {
+            }  else if (response.data === 'redirect:/login?success_admin'){
+                setIsLoggedInAdmin(true);
+                setErrorMessage('');
+                navigate('/admin')
+            }
+            else {
                 setErrorMessage('Złe dane logowania');
                 console.error("Error during login: unexpected response", response.data);
             }
@@ -31,14 +37,13 @@ export const AuthProvider = ({ children }) => {
     const logOut = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
+        setIsLoggedInAdmin(false);
         
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, logIn, logOut, errorMessage }}>
+        <AuthContext.Provider value={{ isLoggedIn, logIn, logOut, errorMessage, isLoggedInAdmin }}>
             {children}
-             
-
         </AuthContext.Provider>
     );
 };

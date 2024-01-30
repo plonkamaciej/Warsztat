@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage.jsx';
 import RegisterForm from './components/Register.jsx';
 import { AuthProvider } from './components/AuthProvider.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import { AdminPage } from './components/AdminPage.jsx';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
           <Route path="/naprawy" element={<Naprawy />} />
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/wypozyczalnia" element={<PrivateRoute><Wypozyczalnia /></PrivateRoute>} />
+          <Route path="/admin" element={<PrivateRoute><AdminPage /></PrivateRoute>} />
           <Route path="/*" element={<ErrorPage />} />
           <Route path="/LoginPage" element={<LoginPage/>} />
           <Route path="/Register" element={<RegisterForm/>} />

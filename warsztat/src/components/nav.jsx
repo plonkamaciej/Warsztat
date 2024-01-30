@@ -7,7 +7,7 @@ import image1 from "../assets/imageCard1.jpeg";
 
 function Nav() {
   return (
-    <div>
+    <div >
       <Header/>
         <div className='flex justify-evenly m-8'>
         <Card title="Naprawy" image={image1} route="Naprawy">Serwis</Card>
