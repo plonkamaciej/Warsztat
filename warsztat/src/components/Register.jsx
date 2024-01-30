@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from "./nav.jsx"
 import axios from 'axios';
 
@@ -13,6 +14,7 @@ const RegisterForm = () => {
   });
 
   const [status, setStatus] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -32,6 +34,8 @@ const RegisterForm = () => {
     .then(response => {
       if (response.data === 'redirect:/registerClient?success') {
         setStatus('Registration successful');
+        navigate('/login');  // Navigate to /login
+
       } else {
         setStatus('Registration failed')
       }

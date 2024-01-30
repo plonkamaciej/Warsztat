@@ -72,7 +72,6 @@ export const AdminPage = () => {
                 <div>
                     {Array.isArray(items) && items.map((item, index) => (
                         <div key={index} className=' flex gap-5'>
-                            <p>{item.id}</p>
                             <p>{item.mark}</p>
                             <p>{item.model}</p>
                             <p>{item.color}</p>
