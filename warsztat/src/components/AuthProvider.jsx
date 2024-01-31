@@ -5,7 +5,7 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate(); 

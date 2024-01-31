@@ -8,12 +8,13 @@ function Wypozyczalnia() {
   const [items, setItems] = useState([]);
   const { isLoggedIn } = useContext(AuthContext);
   
-
+// wykonuje się automatycznie
 useEffect(() => {
   axios.get('http://localhost:8080/carForRents')
         .then(response => setItems(response.data))
         .catch(error => console.error('Error:', error));
 }, []);
+// trzeba wysłać zapytanie z postem i owinać to w funckję, potem trzeba to przypisać do przycisku "wynajmnij"
 
   return (
     <div>
@@ -49,17 +50,32 @@ useEffect(() => {
           </div>
         </div>
         <h3 className="text-lg font-semibold mb-2">Nasze samochody:</h3>
-        <div>
-                    {Array.isArray(items) && items.map((item, index) => (
-                        <div key={index} className=' flex gap-5'>
-                            <p>{item.mark}</p>
-                            <p>{item.model}</p>
-                            <p>{item.color}</p>
-                            <p>ROCZNIK: {item.dateOfProduction}</p>
-                            
-                        </div>
-                    ))}
-                </div>
+        <table className="border-2 border-black border-collapse">
+    <thead className="border-2  border-black border-collapse">
+        <tr className="border-2  border-black border-collapse">
+
+            <th className="border-2  border-black border-collapse p-2">Mark</th>
+            <th className="border-2  border-black border-collapse p-2">Model</th>
+            <th className="border-2  border-black border-collapse p-2">Color</th>
+            <th className="border-2  border-black border-collapse p-2">Date of Production</th>
+            <th className="border-2  border-black border-collapse p-2">Dostępność</th>
+        </tr>
+    </thead>
+    <tbody className="border-2  border-black border-collapse">
+        {Array.isArray(items) && items.map((item, index) => (
+            <tr className="border-2  border-black border-collapse" key={index}>
+
+                <td className="border-2  border-black border-collapse p-2">{item.mark}</td>
+                <td className="border-2  border-black border-collapse p-2">{item.model}</td>
+                <td className="border-2  border-black border-collapse p-2">{item.color}</td>
+                <td className="border-2  border-black border-collapse p-2">{item.dateOfProduction}</td>
+                <td className="border-2  border-black border-collapse p-2">Tak</td> { /* todo zmienić na nie jeśli potwierdzone przez admina*/ }
+                {/* TODO: dodać przycisk/lite z wyborem samochodu do wypożyczania - zapytanie pojawi się w panelu - admin może potwierdzić - wtedy zmieni się dostępność u clienta */}
+               
+            </tr>
+        ))}
+    </tbody>
+</table>
 
         <p className="mt-8">Nie czekaj dłużej! Skontaktuj się z nami i zarezerwuj swój samochód już dziś, aby rozpocząć niezapomnianą podróż!</p>
         </ Content>
