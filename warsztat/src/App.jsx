@@ -8,10 +8,11 @@ import LoginPage from './components/LoginPage.jsx';
 import RegisterForm from './components/Register.jsx';
 import { AuthProvider } from './components/AuthProvider.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
-import { AdminPage } from './components/AdminPageRent.jsx';
+import { AdminPageRent } from './components/AdminPageRent.jsx';
 import { AdminPageProtocol } from './components/AdminPageProt.jsx';
 import { AdminPageProtList } from './components/AdminPageProtList.jsx';
 import { AdminPageReplace } from './components/AdminPageReplace.jsx';
+import { AdminPage } from './components/admin.jsx';
 
 function App() {
   
@@ -23,10 +24,11 @@ function App() {
           <Route path="/naprawy" element={<Naprawy />} />
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/wypozyczalnia" element={<PrivateRoute><Wypozyczalnia /></PrivateRoute>} />
-          <Route path="/admin/rent" element={<PrivateRoute><AdminPage /></PrivateRoute>} />
+          <Route path="/admin/rent" element={<PrivateRoute><AdminPageRent /></PrivateRoute>} />
           <Route path="/admin/replace" element={<PrivateRoute><AdminPageReplace /></PrivateRoute>} />
           <Route path="/admin/prot" element={<PrivateRoute><AdminPageProtocol /></PrivateRoute>} />
           <Route path="/admin/prot/:id" element={<PrivateRoute><AdminPageProtList /></PrivateRoute>} />
+          <Route path="/admin" element={<PrivateRoute><AdminPage /></PrivateRoute>} />
           <Route path="/*" element={<Home />} />
           <Route path="/LoginPage" element={<LoginPage/>} />
           <Route path="/Register" element={<RegisterForm/>} />

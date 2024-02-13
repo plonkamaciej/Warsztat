@@ -4,7 +4,7 @@ import Content from './content';
 import axios from 'axios';
 
 
-export const AdminPage = () => {
+export const AdminPageRent = () => {
     const { logOut } = useContext(AuthContext);
     const [items, setItems] = useState([]);
     

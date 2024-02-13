@@ -28,8 +28,6 @@ export const AdminPageProtList = () => {
                 <button className="px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow" onClick={logOut}>Log Out</button>
             </div>
            
-           
-
             <p className="p-2">Id: {items.id}</p>
             <p className="p-2">Date: {items.dateOfCreate}</p>
             <p className=" p-2">Opis: {items.information}</p>
