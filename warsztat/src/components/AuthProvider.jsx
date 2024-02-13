@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(false);
+    const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate(); 
 

@@ -1,7 +1,17 @@
+import React, { useState, useEffect } from 'react';
 import Nav from './nav.jsx'
 import Content from './content.jsx';
-
+import axios from 'axios';
 function pomoc() {
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/carForReplace')
+          .then(response => setItems(response.data))
+          .catch(error => console.error('Error:', error));
+  }, []);
+
   return (
     <div>
       <Nav />
@@ -31,6 +41,32 @@ function pomoc() {
     </ul>
   </div>
 </div>
+
+<h3 className="text-lg font-semibold mb-2">Nasze samochody:</h3>
+        <table className="border-2 border-black border-collapse">
+    <thead className="border-2  border-black border-collapse">
+        <tr className="border-2  border-black border-collapse">
+
+            <th className="border-2  border-black border-collapse p-2">Mark</th>
+            <th className="border-2  border-black border-collapse p-2">Model</th>
+            <th className="border-2  border-black border-collapse p-2">Date of Production</th>
+            <th className="border-2  border-black border-collapse p-2">Dostępność</th>
+        </tr>
+    </thead>
+    <tbody className="border-2  border-black border-collapse">
+        {Array.isArray(items) && items.map((item, index) => (
+            <tr className="border-2  border-black border-collapse" key={index}>
+
+                <td className="border-2  border-black border-collapse p-2">{item.mark}</td>
+                <td className="border-2  border-black border-collapse p-2">{item.model}</td>
+                <p className='p-2 text-center'>{item.dateOfProduction}</p>
+                <td className="border-2  border-black border-collapse p-2">{item.location}</td> { /* todo zmienić na nie jeśli potwierdzone przez admina*/ }
+                {/* TODO: dodać przycisk/lite z wyborem samochodu do wypożyczania - zapytanie pojawi się w panelu - admin może potwierdzić - wtedy zmieni się dostępność u clienta */}
+               
+            </tr>
+        ))}
+    </tbody>
+</table>
 
 <p className="mt-8">Nie musisz martwić się, gdy zdarzy Ci się awaria drogowa. Skontaktuj się z nami, a my zajmiemy się resztą, abyś mógł jak najszybciej wrócić na drogę!</p>
       </Content>

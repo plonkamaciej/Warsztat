@@ -2,6 +2,9 @@ import Nav from './nav.jsx'
 import Content from './content.jsx';
 
 function Naprawy() {
+
+
+
   return (
     <div>
       <Nav />
@@ -39,6 +42,8 @@ function Naprawy() {
     </ul>
   </div>
 </div>
+
+
 
 <p className="mt-8">Niezależnie od tego, czy potrzebujesz drobnej naprawy, przeglądu technicznego czy kompleksowej naprawy po wypadku, możesz polegać na naszej wiedzy, doświadczeniu i zaangażowaniu w zapewnienie pełnej satysfakcji klienta. Skontaktuj się z nami już dziś, aby umówić się na wizytę w naszym warsztacie naprawczym!</p>
       </Content>
